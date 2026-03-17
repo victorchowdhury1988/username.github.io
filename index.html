@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>सिटी सवाद — पहारपुर और गया</title>
+  <style>
+    :root{--accent:#EF6C00;--dark:#2b2b2b;--muted:#666;--card:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, 'Noto Sans Devanagari', Arial, sans-serif;background:linear-gradient(180deg,#fffaf6,#fff);color:var(--dark);}
+    header{background:var(--accent);color:#fff;padding:28px 16px;text-align:center;}
+    header h1{margin:0;font-size:1.6rem;letter-spacing:0.4px}
+    header p{margin:6px 0 0;opacity:0.95}
+    .container{max-width:980px;margin:20px auto;padding:0 16px}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:center;margin-bottom:18px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));padding:18px;border-radius:14px;box-shadow:0 10px 30px rgba(14,14,14,0.06);}
+    .hero-plate{background:linear-gradient(135deg,#fff6ed,#ffe9d6);border-radius:12px;padding:18px;text-align:center}
+    .price{font-weight:700;font-size:1.15rem;margin-top:6px;color:var(--accent)}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
+    .menu-item{background:var(--card);padding:12px;border-radius:10px;border:1px solid #f2e8df}
+    .menu-item h4{margin:0 0 6px;font-size:1rem}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    form label{display:block;margin-top:10px;font-weight:600;color:var(--dark)}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #e8e2dd;margin-top:6px;font-size:0.95rem}
+    .btn{background:var(--accent);color:#fff;padding:12px;border-radius:10px;border:none;width:100%;font-weight:700;margin-top:12px;cursor:pointer}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:0.9rem;padding:18px 8px}
+    @media(max-width:880px){.hero{grid-template-columns:1fr;}.hero-plate{order:-1}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍛 सिटी सवाद</h1>
+    <p>पहारपुर और गया — घर जैसा खाना, अब मोबाइल पर</p>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <div class="hero-card card">
+        <h2 style="margin:0 0 8px">आज का खास — <span style="color:var(--accent)">घर जैसा खाना</span></h2>
+        <p style="margin:0;color:var(--muted)">ताज़ा, सस्ता और साफ — रोटी, सब्ज़ी, दाल और चावल</p>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap">
+          <div style="font-size:0.95rem;background:#fff3e0;padding:8px;border-radius:10px">कीमत: <strong>₹80</strong></div>
+          <div style="font-size:0.95rem;color:var(--muted)">डिलीवरी: ₹20 - ₹30</div>
+        </div>
+
+        <div class="menu-grid" aria-hidden="false">
+          <div class="menu-item"><h4>घर जैसा खाना</h4><div class="muted">दाल · सब्ज़ी · रोटी · चावल</div><div class="price">₹80</div></div>
+          <div class="menu-item"><h4>दाल-चावल</h4><div class="muted">सादा घर जैसा दाल-चावल</div><div class="price">₹50</div></div>
+          <div class="menu-item"><h4>लिट्टी-चोखा</h4><div class="muted">बिहार का खास व्यंजन</div><div class="price">₹40</div></div>
+          <div class="menu-item"><h4>समोसा + चाय</h4><div class="muted">शाम का नाश्ता</div><div class="price">₹20</div></div>
+        </div>
+      </div>
+
+      <div class="hero-plate card hero-plate">
+        <h3 style="margin:0 0 6px">ऑर्डर करें</h3>
+        <p style="margin:0 0 8px;color:var(--muted)">हम केवल पहारपुर और गया में डिलीवर करते हैं</p>
+        <form id="orderForm">
+          <label>खाना चुनें</label>
+          <select id="menuItem" required>
+            <option value="">-- कृपया चुनें --</option>
+            <option value="घर जैसा खाना|80">घर जैसा खाना - ₹80</option>
+            <option value="दाल-चावल|50">दाल-चावल - ₹50</option>
+            <option value="लिट्टी-चोखा|40">लिट्टी-चोखा - ₹40</option>
+            <option value="समोसा + चाय|20">समोसा + चाय - ₹20</option>
+          </select>
+          <label>संख्या (Quantity)</label>
+          <input type="number" id="quantity" value="1" min="1" max="10" required>
+          <label>नाम</label>
+          <input id="name" placeholder="अपना नाम लिखें" required>
+          <label>मोबाइल नंबर</label>
+          <input id="phone" placeholder="10 अंकों का मोबाइल" required>
+          <label>पता</label>
+          <textarea id="address" rows="2" placeholder="पूरा पता लिखें" required></textarea>
+          <label>पिन कोड</label>
+          <input id="pincode" placeholder="उदाहरण: 824232" required>
+          <button type="button" class="btn" id="orderBtn">ऑर्डर करो</button>
+        </form>
+        <div id="msg" style="margin-top:10px;font-weight:600"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <h3 style="margin-top:0">हम कहाँ डिलीवर करते हैं</h3>
+      <p>गाँव: <strong>पहारपुर</strong> · शहर: <strong>गया</strong></p>
+      <p style="color:var(--muted);margin-top:6px">डिलीवरी शुल्क अलग से लिया जाएगा — ₹20–₹30, दूरी के अनुसार।</p>
+    </div>
+
+    <div class="card" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+      <div style="flex:1;min-width:200px">
+        <h4 style="margin:0 0 6px">संपर्क</h4>
+        <p style="margin:0">फोन: <strong>9334139904</strong><br>ईमेल: <strong>cityswaad@gmail.com</strong></p>
+      </div>
+      <div style="min-width:160px;text-align:right;color:var(--muted)">
+        <div style="font-weight:700">सिटी सवाद</div>
+        <div>© 2025 — Designed by Vicky</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    वेबसाइट लोकल और सरल ऑर्डर के लिए बनाई गयी है — सुरक्षित और तेज़।
+  </footer>
+
+  <script>
+    const allowedPins = ['824232','823001','823002'];
+    const ownerWhatsApp = '919334139904';
+    
+    document.getElementById('orderBtn').addEventListener('click', function(){
+      const menuSelect = document.getElementById('menuItem').value;
+      const quantity = document.getElementById('quantity').value;
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const pin = document.getElementById('pincode').value.trim();
+      const msg = document.getElementById('msg');
+      
+      if(!menuSelect || !name || !phone || !address || !pin){ 
+        msg.style.color='red'; 
+        msg.textContent='कृपया सभी जानकारी भरें।'; 
+        return; 
+      }
+      
+      if(!allowedPins.includes(pin)){ 
+        msg.style.color='red'; 
+        msg.textContent='माफ कीजिए, हम केवल पहारपुर और गया में डिलीवर करते हैं।'; 
+        return; 
+      }
+      
+      const [itemName, itemPrice] = menuSelect.split('|');
+      const totalPrice = parseInt(itemPrice) * parseInt(quantity);
+      
+      const orderText = `🍛 *नया ऑर्डर - सिटी सवाद*\n\n` +
+                       `🍽️ आइटम: ${itemName}\n` +
+                       `🔢 संख्या: ${quantity}\n` +
+                       `💰 कीमत: ₹${totalPrice}\n\n` +
+                       `👤 नाम: ${name}\n` +
+                       `📱 मोबाइल: ${phone}\n` +
+                       `📍 पता: ${address}\n` +
+                       `📮 पिन कोड: ${pin}\n\n` +
+                       `💵 कुल राशि: ₹${totalPrice} + डिलीवरी (₹20-30)\n\n` +
+                       `कृपया जल्दी संपर्क करें!`;
+      
+      const whatsappURL = `https://wa.me/${ownerWhatsApp}?text=${encodeURIComponent(orderText)}`;
+      window.open(whatsappURL, '_blank');
+      
+      msg.style.color='green'; 
+      msg.innerHTML = 'धन्यवाद ' + name + '! WhatsApp खुल रहा है... कृपया message भेजें।';
+      
+      setTimeout(() => {
+        document.getElementById('orderForm').reset();
+        msg.textContent = '';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
